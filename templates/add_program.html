@@ -1,0 +1,21 @@
+{% extends "base1.html" %}
+
+{% block title %}Добавить программу{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h1>Добавить программу</h1>
+
+    <form method="post" enctype="multipart/form-data">
+
+        <label for="course_id"> Номер курса (краткое наименование) </label>
+        <input type="text" id="course_id" name="course_id" required>
+
+        <label for="title"> Название курса </label>
+        <input type="text" id="title" name="title" required>
+
+    <button class="btn" type="submit"><img alt="Добавить программу" src="{{ url_for('static', filename='images/add.svg') }}"> Добавить </button>
+
+    </form>
+</div>
+{% endblock %}

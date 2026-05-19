@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div id="this_is_beginning"></div>
+<div class="search">
+    <form class="search_form" method="post" action="{{ url_for('search') }}" enctype="multipart/form-data">
+        <button title="Поиск"><img alt="Поиск" src="{{ url_for('static', filename='images/search.svg') }}"></button>
+        <button type="button" title="Очистить" onclick="window.location.href='{{ url_for('index') }}';">
+        <img alt="Очистить"  src="{{ url_for('static', filename='images/clear.svg') }}"></button>
+        <input type="text" name="search" placeholder="найти" value="{{ search_value }}">
+    </form>
+</div>
+
+<table>
+    <tr>
+        <th>№</th>
+        <th>Фамилия</th>
+        <th>Имя</th>
+        <th>Логин</th>
+        <th>Пароль</th>
+        <th>Email</th>
+        <th>Дата начала обучения</th>
+        <th>Дата конца обучения</th>
+        <th>Должность</th>
+        <th>Телефон</th>
+        <th>Организация</th>
+    </tr>
+{% for index in range(all_listeners|length) %}
+    <tr>
+        <td><a href="{{ url_for('change', listener_id=all_listeners[index].id) }}">{{ index + 1 }}</a></td>
+        <td>{{ all_listeners[index].lastname }}</td>
+        <td>{{ all_listeners[index].firstname }}</td>
+        <td>{{ all_listeners[index].username }}</td>
+        <td>{{ all_listeners[index].password }}</td>
+        <td>{{ all_listeners[index].email }}</td>
+        <td>{{ all_listeners[index].start_date.strftime('%d.%m.%Y') }}</td>
+        <td>{{ all_listeners[index].end_date.strftime('%d.%m.%Y') }}</td>
+        <td>{{ all_listeners[index].job }}</td>
+        <td>{{ all_listeners[index].phone }}</td>
+        <td>{{ all_listeners[index].institution }}</td>
+    </tr>
+{% endfor %}
+</table>
+<div id="this_is_end"></div>
+
+{% endblock %}

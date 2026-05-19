@@ -1,0 +1,73 @@
+{% extends "base1.html" %}
+
+{% block title %}Изменить данные слушателя{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h1>Изменить данные слушателя</h1>
+
+    <form id="change_form" class="form_add_listener" method="post" enctype="multipart/form-data">
+        <div class="form_add_listener_data">
+            <label for="lastname"> Фамилия </label>
+            <input type="text" id="lastname" name="lastname" value="{{ listener.lastname }}" required>
+
+            <label for="firstname"> Имя и Отчество </label>
+            <input type="text" id="firstname" name="firstname" value="{{ listener.firstname }}" required>
+
+            <label for="username"> Логин </label>
+            <input type="text" id="username" name="username" value="{{ listener.username }}">
+
+            <label for="password"> Пароль </label>
+            <input type="text" id="password" name="password" value="{{ listener.password }}">
+
+            <label for="email"> @mail </label>
+            <input type="text" id="email" name="email" value="{{ listener.email }}" required>
+
+            <label for="start_date"> Дата начала обучения </label>
+            <input type="date" id="start_date" name="start_date" value="{{ listener.start_date }}">
+
+            <label for="end_date"> Дата завершения обучения </label>
+            <input type="date" id="end_date" name="end_date" value="{{ listener.end_date }}">
+
+            <label for="job"> Должность </label>
+            <input type="text" id="job" name="job" value="{{ listener.job }}">
+
+            <label for="institution"> Организация </label>
+            <input type="text" id="institution" name="institution" value="{{ listener.institution }}">
+
+            <label for="phone"> Телефон </label>
+            <input type="text" id="phone" name="phone" value="{{ listener.phone }}">
+
+          <div class="button_block">
+            <button class="btn" type="button" onclick="change_listener()"><img alt="Изменить" src="{{ url_for('static', filename='images/edit.svg') }}"> Изменить </button>
+
+            <button class="btn" type="button" onclick="send_mail()"><img alt="Отправить" src="{{ url_for('static', filename='images/mailsend.svg') }}"> Отправить </button>
+
+            <button class="btn" type="button" onclick="delete_listener()"><img alt="Удалить" src="{{ url_for('static', filename='images/delete.svg') }}"> Удалить </button>
+          </div>
+        </div>
+
+        <div class="form_add_listener_programs">
+            {% for program in programs %}
+                <div class="program">
+                    <div class="program_checkbox"><input type="checkbox" name="programs" value="{{ program.id }}" {% if program in listener.programs %} checked {% endif %}></div>
+                    <div class="program_title">{{ program.title }}</div>
+
+
+                </div>
+    {% endfor %}
+        </div>
+
+    </form>
+</div>
+<form id="delete_form"
+          method="POST"
+          action="{{ url_for('delete', listener_id=listener.id) }}">
+</form>
+
+<form id="send_mail_form"
+          method="POST"
+          action="{{ url_for('send_mail', listener_id=listener.id) }}">
+</form>
+
+{% endblock %}

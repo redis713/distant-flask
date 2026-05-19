@@ -1,0 +1,56 @@
+{% extends "base1.html" %}
+
+{% block title %}Добавить слушателя{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h1>Добавить слушателя</h1>
+
+    <form class="form_add_listener" method="post" enctype="multipart/form-data">
+        <div class="form_add_listener_data">
+            <label for="lastname"> Фамилия </label>
+            <input type="text" id="lastname" name="lastname" required>
+
+            <label for="firstname"> Имя и Отчество </label>
+            <input type="text" id="firstname" name="firstname" required>
+
+            <label for="username"> Логин </label>
+            <input type="text" id="username" name="username">
+
+            <label for="password"> Пароль </label>
+            <input type="text" id="password" name="password">
+
+            <label for="email"> @mail </label>
+            <input type="text" id="email" name="email" required>
+
+            <label for="start_date"> Дата начала обучения </label>
+            <input type="date" id="start_date" name="start_date">
+
+            <label for="end_date"> Дата завершения обучения </label>
+            <input type="date" id="end_date" name="end_date">
+
+            <label for="job"> Должность </label>
+            <input type="text" id="job" name="job">
+
+            <label for="institution"> Организация </label>
+            <input type="text" id="institution" name="institution">
+
+            <label for="phone"> Телефон </label>
+            <input type="text" id="phone" name="phone">
+
+
+            <button class="btn" type="submit"><img alt="Добавить слухача" src="{{ url_for('static', filename='images/add.svg') }}"> Добавить </button>
+        </div>
+
+        <div class="form_add_listener_programs">
+            {% for program in programs %}
+                <div class="program">
+                    <div class="program_checkbox"><input type="checkbox" name="programs" value="{{ program.id }}"></div>
+                    <div class="program_title">{{ program.title }}</div>
+                </div>
+    {% endfor %}
+        </div>
+
+    </form>
+</div>
+{% endblock %}
