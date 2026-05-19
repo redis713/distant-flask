@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Главная{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <a href="{{ url_for('add') }}"><button class="btn"><img alt="Добавить нового слухача" src="{{ url_for('static', filename='images/add.svg') }}">Добавить</button></a>
+        </div>
+
+        <div>
+            <button class="btn"><img alt="Импорт слухачей из списка csv" src="{{ url_for('static', filename='images/downloading.svg') }}"><a href="" onclick="document.getElementById('import_csv').click(); return false">Импорт из csv</a></button>
+            <form id="import_from_csv" action="{{ url_for('import_from_csv') }}" enctype="multipart/form-data"
+                  method="post">
+                <input type="file" accept=".csv" name="file" id="import_csv">
+            </form>
+        </div>
+        <div>
+            <button class="btn" onclick="openExportModal();"><img alt="Выгрузить список для moodle" src="{{ url_for('static', filename='images/export_notes.svg') }}">Экспорт в moodle</button>
+        </div>
+        <div>
+            <button class="btn" onclick="openSendList();"><img id="a123" alt="Выгрузить список для почты" src="{{ url_for('static', filename='images/listmail.svg') }}">Список рассылки</button>
+        </div>
+
+        <div>
+            <a href="{{ url_for('add_login') }}"><button class="btn"><img alt="Сгенерировать логин и пароль" src="{{ url_for('static', filename='images/key.svg') }}">Логин/пароль</button></a>
+        </div>
+        <div>
+            <a href="{{ url_for('add_program') }}"><button class="btn"><img alt="Добавить новую программу" src="{{ url_for('static', filename='images/file_open.svg') }}">Добавить программу</button></a>
+        </div>
+
+        <div class="arrow_block">
+            <a href="#this_is_beginning"><button class="arrow"><img alt="туды" src="{{ url_for('static', filename='images/up.svg') }}"></button></a>
+            <a href="#this_is_end"><button class="arrow"><img alt="сюды" src="{{ url_for('static', filename='images/down.svg') }}"></button></a>
+        </div>
+
+    </nav>
+
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+
+    <!--Модалка-->
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <p id="modal-message">Выберите дату начала обучения</p>
+        <form action="{{ url_for('export_csv') }}" method="post" id="export-form" enctype="multipart/form-data">
+        <input type="number" name="code" value="1" hidden>
+        <input type="date" name="date" id="moodle_date" required>
+
+        <div class="modal-actions">
+            <!--
+            <a id="yes-a" href=""><button >Да</button></a>
+            <a id="no-a" href=""><button id="no-btn">Нет</button></a>
+            -->
+            <button id="yes-a" type="submit">Ок</button>
+            <button type="button" id="no-btn">Отмена</button>
+            </div>
+        </form>
+      </div>
+    </div>
+
+
+    <!--Модалка список рассылки-->
+    <div id="modal_1" class="modal">
+      <div class="modal-content">
+        <p id="modal-message_1">Выберите дату начала обучения</p>
+        <form id="sendlist_form" action="{{ url_for('export_csv') }}" method="post" enctype="multipart/form-data">
+        <input type="number" name="code" value="2" hidden>
+        <input type="date" name="date" required>
+
+        <div class="modal-actions">
+            <button id="yes-a-1" type="submit">Ок</button>
+            <button type="button" id="no-btn-1">Отмена</button>
+            </div>
+        </form>
+      </div>
+    </div>
+</body>
+</html>
