@@ -6,7 +6,7 @@ def load_data(csv_file):
     import_list = []
 
     # Чтение данных из CSV файла и запись их в базу данных
-    csv_file = TextIOWrapper(csv_file)
+    csv_file = TextIOWrapper(csv_file, encoding='cp1251')
     csv_reader = csv.reader(csv_file, delimiter=';')
     next(csv_reader)  # Пропускаем заголовок, если он есть в CSV файле
     for row in csv_reader:
