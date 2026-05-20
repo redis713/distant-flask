@@ -5,7 +5,7 @@ def export_csv_file(export_list, code):
 # 2 для рассылки писем, 1 для moodle
     if int(code) == 2:
         filename = 'export_csv/' + 'contact.csv'
-        with open(filename, 'w', newline='') as file:
+        with open(filename, 'w', newline='', encoding='cp1251') as file:
             writer = csv.writer(file, delimiter=';')
             writer.writerow(
                 ['firstname', 'username', 'password', 'email', 'start_date', 'end_date'])
@@ -17,7 +17,7 @@ def export_csv_file(export_list, code):
 
     date = datetime.date.today()
     filename = 'export_csv/' + str(date) + '_export.csv'
-    with open(filename, 'w', newline='') as file:
+    with open(filename, 'w', newline='', encoding='cp1251') as file:
         writer = csv.writer(file, delimiter=';')
         writer.writerow(['username', 'password', 'email', 'firstname', 'lastname', 'institution', 'phone1', 'course1',
                          'course2', 'course3', 'course4', 'course5', 'role1', 'role2', 'role3', 'role4', 'role5'])
@@ -30,7 +30,7 @@ def export_csv_file(export_list, code):
             for cell in range(5 - count):
                 export_record.append('')
 
-            for program in listener.programs:
+            for i in range(5):
                 export_record.append('student')
 
             writer.writerow(export_record)
