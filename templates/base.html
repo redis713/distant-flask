@@ -13,7 +13,7 @@
         </div>
 
         <div>
-            <button class="btn"><img alt="Импорт слухачей из списка csv" src="{{ url_for('static', filename='images/downloading.svg') }}"><a href="" onclick="document.getElementById('import_csv').click(); return false">Импорт из csv</a></button>
+            <button class="btn" onclick="document.getElementById('import_csv').click(); return false"><img alt="Импорт слухачей из списка csv" src="{{ url_for('static', filename='images/downloading.svg') }}">Импорт из csv</button>
             <form id="import_from_csv" action="{{ url_for('import_from_csv') }}" enctype="multipart/form-data"
                   method="post">
                 <input type="file" accept=".csv" name="file" id="import_csv">

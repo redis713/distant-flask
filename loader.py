@@ -23,8 +23,8 @@ def load_data(csv_file):
 
         if len(listener_data[7]) > 250:
             listener_data[7] = listener_data[7][:250]
-        if len(program_data[9]) > 250:
-            program_data[9] = program_data[9][:250]
+        if len(listener_data[9]) > 250:
+            listener_data[9] =listener_data[9][:250]
         import_list.append([listener_data, program_data])
 
     return import_list
