@@ -198,7 +198,7 @@ def export_csv():
     code = request.form.get("code")
     export_list = Listener.query.filter(Listener.start_date == date).all()
     csv_file = export_csv_file(export_list, code)
-    if code == 1:
+    if int(code) == 1:
         downloadname='export_moodle.csv'
     else:
         downloadname='contact.csv'
