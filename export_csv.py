@@ -1,5 +1,5 @@
 import csv
-import datetime
+from datetime import datetime
 
 def export_csv_file(export_list, code):
 # 2 для рассылки писем, 1 для moodle
@@ -10,7 +10,7 @@ def export_csv_file(export_list, code):
             writer.writerow(
                 ['firstname', 'username', 'password', 'email', 'start_date', 'end_date'])
             for listener in export_list:
-                export_record = [listener.firstname, listener.username, listener.password, listener.email, listener.start_date, listener.end_date]
+                export_record = [listener.firstname, listener.username, listener.password, listener.email, listener.start_date.strftime('%d.%m.%Y'), listener.end_date.strftime('%d.%m.%Y')]
 
                 writer.writerow(export_record)
         return filename
