@@ -1,5 +1,5 @@
 import csv
-from datetime import datetime
+import datetime
 
 def export_csv_file(export_list, code):
 # 2 для рассылки писем, 1 для moodle
