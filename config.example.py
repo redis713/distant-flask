@@ -4,3 +4,7 @@ class Config:
     # Настройки MySQL
     SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://user:password@localhost/distant-flask'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+    HOST = "mail.ru"
+    USERNAME = "user@mail.ru"
+    PASSWORD = "password"

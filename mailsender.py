@@ -5,12 +5,13 @@ from email.message import EmailMessage
 from email.utils import formatdate
 from datetime import datetime, timezone
 import html2text
+from config import Config
 
 #from Demos.OpenEncryptedFileRaw import dst_dir
 
-HOST = "YOUR_HOST"
-USERNAME = "YOUR_EMAIL"
-PASSWORD = "YOUR_PASSWORD"
+HOST = Config.HOST
+USERNAME = Config.USERNAME
+PASSWORD = Config.PASSWORD
 
 
 def html_to_text(html):
