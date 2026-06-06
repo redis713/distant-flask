@@ -44,7 +44,7 @@ def send_email(to_email, name, login, password, date_from, date_to):
 
     msg = EmailMessage()
     msg["Subject"] = "Дистанционное обучение"
-    msg["From"] = "Информационная система <YOUR_EMAIL>"
+    msg["From"] = "Информационная система <" + USERNAME + ">"
     msg["To"] = to_email
     msg["Date"] = formatdate(localtime=True)
 
