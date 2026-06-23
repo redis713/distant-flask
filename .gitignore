@@ -5,3 +5,4 @@ __pycache__/
 export_csv/*
 !export_csv/.gitkeep
 config.py
+.env
