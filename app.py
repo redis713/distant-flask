@@ -52,7 +52,7 @@ def add():
             institution=institution
         )
 
-        program_ids = request.form.getlist("programs")
+        program_ids = [int(x) for x in request.form.getlist("programs")]
         programs = Program.query.filter(Program.id.in_(program_ids)).all()
 
         listener.programs = programs
@@ -98,7 +98,7 @@ def change(listener_id):
         listener.phone = request.form["phone"]
         listener.institution = request.form["institution"]
 
-        program_ids = request.form.getlist("programs")
+        program_ids = [int(x) for x in request.form.getlist("programs")]
         programs = Program.query.filter(Program.id.in_(program_ids)).all()
         listener.programs = programs
 
@@ -194,7 +194,8 @@ def import_from_csv():
 
 @app.route("/export_csv", methods=["POST"])
 def export_csv():
-    date = request.form.get("date")
+    date_str = request.form.get("date")
+    date = datetime.strptime(date_str, "%Y-%m-%d").date()
     code = request.form.get("code")
     export_list = Listener.query.filter(Listener.start_date == date).all()
     csv_file = export_csv_file(export_list, code)
